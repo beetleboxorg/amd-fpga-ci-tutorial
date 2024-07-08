@@ -11,6 +11,7 @@ jobs:
  hello-world:
   # Specify the runner used to perform this job
   runner: ubuntu-runner
+  privileged: true
   volumes:
     - mount:
         name: volume1
