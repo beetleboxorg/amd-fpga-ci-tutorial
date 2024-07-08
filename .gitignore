@@ -9,3 +9,6 @@
 !ci_for_fpgas.srcs/
 !ci_for_fpgas.srcs/*
 !ci_for_fpgas.xpr
+
+!tcl_scripts/
+!tcl_scripts/*
