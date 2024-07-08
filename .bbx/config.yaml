@@ -24,6 +24,7 @@ jobs:
       command: |
         cd /tools/Xilinx/Vivado/2023.1/
         source settings64.sh
+        vivado
 
 # Define a workflow to orchestrate a job
 workflows:
