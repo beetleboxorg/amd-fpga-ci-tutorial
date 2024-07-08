@@ -20,6 +20,12 @@ jobs:
   # Define one or more steps to execute commands as part of the job
   steps:
    - run:
+      name: Initalise vivado environment
+      command: |
+        locale
+        locale-gen "en_US.UTF-8"
+        update-locale LANG=en_US.UTF-8
+   - run:
       name: Say Hello World
       command: |
         cd /tools/Xilinx/Vivado/2023.1/
