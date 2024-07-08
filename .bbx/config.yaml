@@ -8,7 +8,7 @@ runners:
 
 # Define a job to be performed during a workflow
 jobs:   
- hello-world:
+ run-sim-job:
   # Specify the runner used to perform this job
   runner: ubuntu-runner
   privileged: true
@@ -28,7 +28,7 @@ jobs:
         locale-gen "en_US.UTF-8"
         update-locale LANG=en_US.UTF-8
    - run:
-      name: Say Hello World
+      name: Run Simulation
       command: |
         cd /tools/Xilinx/Vivado/2023.1/
         source settings64.sh
@@ -40,4 +40,4 @@ jobs:
 workflows:
  hello-world-workflow:
   jobs:
-   - hello-world
+   - run-sim-job
