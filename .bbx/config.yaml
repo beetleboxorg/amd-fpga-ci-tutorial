@@ -11,6 +11,10 @@ jobs:
  hello-world:
   # Specify the runner used to perform this job
   runner: ubuntu-runner
+  volumes:
+    - mount:
+        name: volume1
+        path: /tools/Xilinx
 
   # Define one or more steps to execute commands as part of the job
   steps:
