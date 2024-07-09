@@ -12,6 +12,9 @@ jobs:
   # Specify the runner used to perform this job
   runner: ubuntu-runner
   privileged: true
+  output: 
+   artifact: 
+    - ci_for_fpgas.sim/
   volumes:
     - mount:
         name: volume1
