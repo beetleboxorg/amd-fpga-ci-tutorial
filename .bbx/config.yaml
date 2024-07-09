@@ -35,6 +35,26 @@ jobs:
         cd $HOME
         ls
         vivado -mode batch -source tcl_scripts/run_sim.tcl
+   - run:
+      name: Parse simulation for errors
+      command: | 
+        # Path to the file to be checked
+        FILE_PATH="$1"
+        
+        # Check if file path is provided
+        if [[ -z "$FILE_PATH" ]]; then
+          echo "Usage: $0 <path_to_file>"
+          exit 1
+        fi
+        
+        # Search for the phrase "Error: Assertion violation" in the file
+        if grep -q "Error: Assertion violation" "$FILE_PATH"; then
+          echo "Error: Assertion violation found in file."
+          exit 1
+        else
+          echo "No assertion violations found. Passing."
+          exit 0
+        fi
 
 # Define a workflow to orchestrate a job
 workflows:
