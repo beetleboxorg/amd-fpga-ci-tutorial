@@ -17,7 +17,7 @@ jobs:
   volumes:
     - mount:
         name: volume1
-        path: /tools/Xilinx
+        path: <path_to_xilinx_tools_directory by default this is /tools/Xilinx>
 
   # Define one or more steps to execute commands as part of the job
   steps:
@@ -32,7 +32,7 @@ jobs:
    - run:
       name: Run Simulation
       command: |
-        cd /tools/Xilinx/Vivado/2023.1/
+        cd <path_to_vivado_installation_directory by default this is /tools/Xilinx/Vivado/2023.1/>
         source settings64.sh
         cd $HOME
         ls
