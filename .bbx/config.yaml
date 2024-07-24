@@ -15,6 +15,9 @@ jobs:
   output: 
    artifact: 
     - ci_for_fpgas.sim/
+    - ci_for_fpgas.hw/
+    - ci_for_fpgas.runs/
+    - ci_for_fpgas.cache/
   volumes:
     - mount:
         name: volume1
