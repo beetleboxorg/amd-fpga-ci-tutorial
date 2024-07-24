@@ -8,14 +8,16 @@ runners:
 
 # Define a job to be performed during a workflow
 jobs:   
- hello-world:
+ run-sim-job:
   # Specify the runner used to perform this job
   runner: ubuntu-runner
-  privileged: true
+  output: 
+   artifact: 
+    - ci_for_fpgas.sim/
   volumes:
     - mount:
         name: volume1
-        path: /tools/Xilinx
+        path: <path_to_xilinx_tools_directory by default this is /tools/Xilinx>
 
   # Define one or more steps to execute commands as part of the job
   steps:
@@ -28,15 +30,34 @@ jobs:
         locale-gen "en_US.UTF-8"
         update-locale LANG=en_US.UTF-8
    - run:
-      name: Say Hello World
+      name: Run Simulation
       command: |
-        cd /tools/Xilinx/Vivado/2023.1/
+        cd <path_to_vivado_installation_directory by default this is /tools/Xilinx/Vivado/2023.1/>
         source settings64.sh
         cd $HOME
-        vivado
+        ls
+        vivado -mode batch -source tcl_scripts/run_sim.tcl  | tee simulation_output.txt
+   - run:
+      name: Parse simulation for errors
+      command: | 
+        # Path to the file to be checked
+        FILE_PATH="./simulation_output.txt"
+        # Check if the file exists
+        if [[ ! -f "$FILE_PATH" ]]; then
+         echo "File does not exist: $FILE_PATH"
+          exit 1
+        fi
+        # Search for the phrase "Error: Assertion violation" in the file
+        if grep -q "Error: Assertion violation" "$FILE_PATH"; then
+          echo "Error: Assertion violation found in file."
+          exit 1
+        else
+          echo "No assertion violations found. Passing."
+          exit 0
+        fi
 
 # Define a workflow to orchestrate a job
 workflows:
- hello-world-workflow:
+ run-sim-workflow:
   jobs:
-   - hello-world
+   - run-sim-job
