@@ -11,6 +11,7 @@ jobs:
  run-sim-job:
   # Specify the runner used to perform this job
   runner: ubuntu-runner
+  resource_spec: large
   output: 
    artifact: 
     - ci_for_fpgas.sim/
