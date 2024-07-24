@@ -83,7 +83,7 @@ begin
             assert signal_S = '0';
             assert signal_COUT = '1';
             wait for 8ns;
-            assert 0 = 1;
+            -- assert 0 = 1;
             wait for 10ns;
         end process stimulus;
         
