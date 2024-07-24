@@ -10,5 +10,9 @@
 !ci_for_fpgas.srcs/*
 !ci_for_fpgas.xpr
 
+# Include gen files
+!ci_for_fpgas.gen/
+!ci_for_fpgas.gen/*
+
 !tcl_scripts/
 !tcl_scripts/*
