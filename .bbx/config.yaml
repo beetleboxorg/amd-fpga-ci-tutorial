@@ -17,7 +17,7 @@ jobs:
   volumes:
     - mount:
         name: volume1
-        path: <path_to_xilinx_tools_directory by default this is /tools/Xilinx>
+        path: /tools/Xilinx
 
   # Define one or more steps to execute commands as part of the job
   steps:
@@ -32,7 +32,7 @@ jobs:
    - run:
       name: Run Simulation
       command: |
-        cd <path_to_vivado_installation_directory by default this is /tools/Xilinx/Vivado/2023.1/>
+        cd /tools/Xilinx/Vivado/2023.1/
         source settings64.sh
         cd $HOME
         ls
@@ -55,6 +55,14 @@ jobs:
           echo "No assertion violations found. Passing."
           exit 0
         fi
+   - run:
+      name: Run Bitstream Generation
+      command: |
+        cd /tools/Xilinx/Vivado/2023.1/
+        source settings64.sh
+        cd $HOME
+        ls
+        vivado -mode batch -source tcl_scripts/run_gen_bitstream.tcl  | tee bit_stream_gen_output.txt
 
 # Define a workflow to orchestrate a job
 workflows:
