@@ -8,7 +8,7 @@ runners:
 
 # Define a job to be performed during a workflow
 jobs:   
- run-sim-job:
+ run-sim-syn-job:
   # Specify the runner used to perform this job
   runner: ubuntu-runner
   resource_spec: large
@@ -77,6 +77,6 @@ jobs:
 
 # Define a workflow to orchestrate a job
 workflows:
- run-sim-workflow:
+ run-sim-syn-workflow:
   jobs:
-   - run-sim-job
+   - run-sim-syn-job
