@@ -22,7 +22,7 @@ jobs:
   volumes:
     - mount:
         name: volume1
-        path: /tools/Xilinx
+        path: < The installation directory of Xilinx tools, by default this is /tools/Xilinx>
 
   # Define one or more steps to execute commands as part of the job
   steps:
@@ -37,7 +37,7 @@ jobs:
    - run:
       name: Run Simulation
       command: |
-        cd /tools/Xilinx/Vivado/2023.1/
+        cd  < The installation directory of Vivado, by default this is /tools/Xilinx/Vivado/2023.1/>
         source settings64.sh
         cd $HOME
         ls
@@ -63,7 +63,7 @@ jobs:
    - run:
       name: Run Bitstream Generation
       command: |
-        cd /tools/Xilinx/Vivado/2023.1/
+        cd < The installation directory of Vivado, by default this is  /tools/Xilinx/Vivado/2023.1/>
         source settings64.sh
         cd $HOME
         vivado -mode batch -source tcl_scripts/run_gen_bitstream.tcl  | tee bit_stream_gen_output.txt
