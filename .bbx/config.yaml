@@ -18,6 +18,7 @@ jobs:
     - ci_for_fpgas.hw/
     - ci_for_fpgas.runs/
     - ci_for_fpgas.cache/
+    - iladata.ila
   volumes:
     - mount:
         name: volume1
