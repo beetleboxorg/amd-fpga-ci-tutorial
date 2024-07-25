@@ -66,6 +66,13 @@ jobs:
         source settings64.sh
         cd $HOME
         vivado -mode batch -source tcl_scripts/run_gen_bitstream.tcl  | tee bit_stream_gen_output.txt
+   - run:
+      name: Program Device and Trigger ILA
+      command: |
+        cd /tools/Xilinx/Vivado/2023.1/
+        source settings64.sh
+        cd $HOME
+        vivado -mode batch -source tcl_scripts/program_device_trigger_ila.tcl  | tee program_device_trigger_ila.txt
 
 # Define a workflow to orchestrate a job
 workflows:
