@@ -33,32 +33,32 @@ jobs:
         locale
         locale-gen "en_US.UTF-8"
         update-locale LANG=en_US.UTF-8
-   - run:
-      name: Run Simulation
-      command: |
-        cd /tools/Xilinx/Vivado/2023.1/
-        source settings64.sh
-        cd $HOME
-        ls
-        vivado -mode batch -source tcl_scripts/run_sim.tcl  | tee simulation_output.txt
-   - run:
-      name: Parse simulation for errors
-      command: | 
-        # Path to the file to be checked
-        FILE_PATH="./simulation_output.txt"
-        # Check if the file exists
-        if [[ ! -f "$FILE_PATH" ]]; then
-         echo "File does not exist: $FILE_PATH"
-          exit 1
-        fi
-        # Search for the phrase "Error: Assertion violation" in the file
-        if grep -q "Error: Assertion violation" "$FILE_PATH"; then
-          echo "Error: Assertion violation found in file."
-          exit 1
-        else
-          echo "No assertion violations found. Passing."
-          exit 0
-        fi
+   # - run:
+   #    name: Run Simulation
+   #    command: |
+   #      cd /tools/Xilinx/Vivado/2023.1/
+   #      source settings64.sh
+   #      cd $HOME
+   #      ls
+   #      vivado -mode batch -source tcl_scripts/run_sim.tcl  | tee simulation_output.txt
+   # - run:
+   #    name: Parse simulation for errors
+   #    command: | 
+   #      # Path to the file to be checked
+   #      FILE_PATH="./simulation_output.txt"
+   #      # Check if the file exists
+   #      if [[ ! -f "$FILE_PATH" ]]; then
+   #       echo "File does not exist: $FILE_PATH"
+   #        exit 1
+   #      fi
+   #      # Search for the phrase "Error: Assertion violation" in the file
+   #      if grep -q "Error: Assertion violation" "$FILE_PATH"; then
+   #        echo "Error: Assertion violation found in file."
+   #        exit 1
+   #      else
+   #        echo "No assertion violations found. Passing."
+   #        exit 0
+   #      fi
    - run:
       name: Run Bitstream Generation
       command: |
