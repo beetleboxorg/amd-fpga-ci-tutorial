@@ -16,3 +16,6 @@
 
 !tcl_scripts/
 !tcl_scripts/*
+
+!.bbx/
+!.bbx/*
